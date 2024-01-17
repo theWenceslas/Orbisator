@@ -1,0 +1,83 @@
+<ion-content [fullscreen]="true">
+  <div class="ion-padding">
+    <div id="storedValue">{{ resultValue }}</div>
+
+    <ion-input type="text"
+               class="ion-text-right"
+               label=""
+               [ngModel]="currentValue"></ion-input>
+  </div>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-button color="danger" (click)="clear()">C</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button color="danger" (click)="del()">DEL</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button color="warning">%</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button color="warning" (click)="divide()">/</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button (click)="add(7)">7</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button (click)="add(8)">8</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button (click)="add(9)">9</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button color="warning" (click)="mutliply()">X</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button (click)="add(4)">4</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button (click)="add(5)">5</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button (click)="add(6)">6</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button color="warning" (click)="minus()">-</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button (click)="add(1)">1</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button (click)="add(2)">2</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button (click)="add(3)">3</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button color="warning" (click)="plus()">+</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button color="warning" (click)="toggleSign()">+/-</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button (click)="add(0)">0</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button>.</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button color="success" (click)="equel()">=</ion-button>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+</ion-content>
