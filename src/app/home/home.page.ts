@@ -12,17 +12,17 @@ export class HomePage {
   /**
    * Current displayed value
    */
-  currentValue = "0";
-  private storedValue = '';
-  private storedAction = '';
-  resultValue = '';
+  currentValue: string;
+  private storedValue: string;
+  private storedAction: string;
+  resultValue: string;
 
 
   constructor() {
-    // Initialize your properties here if needed
     this.currentValue = "0";
     this.storedValue = '0';
     this.resultValue = '0';
+    this.storedAction = "plus";
   }
 
   clear() {
@@ -34,6 +34,9 @@ export class HomePage {
 
   add(number: number) {
     // Append the number to the current value
+    if (this.currentValue == "Error") {
+      this.currentValue = '0';
+    }
     if (`${this.currentValue}` == '0') {
       this.currentValue = `${number}`;
     } else {
@@ -41,8 +44,21 @@ export class HomePage {
     }
   }
 
+  decimal() {
+    // Makes number decimal
+    if (!this.currentValue.includes('.')) {
+      if (this.currentValue == "Error") {
+        this.currentValue = '0';
+      }
+      this.currentValue = `${this.currentValue}.`;
+    }
+  }
+
   toggleSign() {
     // Toggle the sign of the current value if it's a number
+    if (this.currentValue == "Error") {
+      this.currentValue = '0'
+    }
     if (!isNaN(Number(this.currentValue))) {
       this.currentValue = (Number(this.currentValue) * -1).toString();
     }
@@ -50,7 +66,9 @@ export class HomePage {
 
   del() {
     // Delete the last character of the current value
-    if (this.currentValue.slice(0, -1) == '') {
+    if (this.currentValue == "Error") {
+      this.currentValue = '0'
+    } else if (this.currentValue.slice(0, -1) == '') {
       this.currentValue = '0';
     } else {
       this.currentValue = this.currentValue.slice(0, -1);
@@ -59,10 +77,13 @@ export class HomePage {
 
   plus() {
     // Perform addition
-    if (this.storedValue) {
-      this.storedValue = (Number(this.storedValue) + Number(this.currentValue)).toString();
-    } else {
+    if (this.currentValue == "Error") {
+      this.currentValue = '0'
+    }
+    if (this.storedValue == '0') {
       this.storedValue = this.currentValue;
+    } else {
+      this.storedValue = (Number(this.storedValue) + Number(this.currentValue)).toString();
     }
     this.storedAction = 'plus';
     this.resultValue = this.storedValue;
@@ -71,22 +92,28 @@ export class HomePage {
 
   minus() {
     // Perform subtraction
-    if (this.storedValue) {
-      this.storedValue = (Number(this.storedValue) - Number(this.currentValue)).toString();
-    } else {
+    if (this.currentValue == "Error") {
+      this.currentValue = '0'
+    }
+    if (this.storedValue == '0') {
       this.storedValue = this.currentValue;
+    } else {
+      this.storedValue = (Number(this.storedValue) - Number(this.currentValue)).toString();
     }
     this.storedAction = 'minus';
     this.resultValue = this.storedValue;
     this.currentValue = '0';
   }
 
-  mutliply() {
+  multiply() {
     // Perform multiplication
-    if (this.storedValue) {
-      this.storedValue = (Number(this.storedValue) * Number(this.currentValue)).toString();
-    } else {
+    if (this.currentValue == "Error") {
+      this.currentValue = '0'
+    }
+    if (this.storedValue == '0') {
       this.storedValue = this.currentValue;
+    } else {
+      this.storedValue = (Number(this.storedValue) * Number(this.currentValue)).toString();
     }
     this.storedAction = 'multiply';
     this.resultValue = this.storedValue;
@@ -96,15 +123,19 @@ export class HomePage {
   divide() {
     // Performs division
     if (this.currentValue == '0') {
-      this.currentValue = "Error";
-    } else if (this.storedValue) {
-      this.storedValue = (Number(this.storedValue) / Number(this.currentValue)).toString();
-    } else {
+      this.currentValue = "Error"
+    } else if (this.storedValue == '0') {
       this.storedValue = this.currentValue;
+      this.storedAction = 'divide';
+      this.resultValue = this.storedValue;
+      this.currentValue = '0';
+    } else {
+      this.storedValue = (Number(this.storedValue) / Number(this.currentValue)).toString();
+      this.storedAction = 'divide';
+      this.resultValue = this.storedValue;
+      this.currentValue = '0';
     }
-    this.storedAction = 'divide';
-    this.resultValue = this.storedValue;
-    this.currentValue = '0';
+
   }
 
 
@@ -115,11 +146,9 @@ export class HomePage {
     } else if (this.storedAction === 'minus') {
       this.minus();
     } else if (this.storedAction === 'multiply') {
-      this.mutliply();
+      this.multiply();
     } else if (this.storedAction === 'divide') {
       this.divide();
     }
   }
-
-
 }
