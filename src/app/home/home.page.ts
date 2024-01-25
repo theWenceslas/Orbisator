@@ -151,4 +151,8 @@ export class HomePage {
       this.divide();
     }
   }
+
+  percentage() {
+
+  }
 }

@@ -1,11 +1,13 @@
 <ion-content [fullscreen]="true">
-  <div class="ion-padding">
-    <div id="storedValue">{{ resultValue }}</div>
+  <div class="terminal">
+    <div class="Result">
+      <div id="storedValue">{{ resultValue }}</div>
 
-    <ion-input type="text"
-               class="ion-text-right"
-               label=""
-               [ngModel]="currentValue"></ion-input>
+      <ion-input type="text"
+                 class="ion-text-right CurrentValue"
+                 label=""
+                 [ngModel]="currentValue"></ion-input>
+    </div>
   </div>
   <ion-grid>
     <ion-row>
@@ -72,7 +74,7 @@
         <ion-button (click)="add(0)">0</ion-button>
       </ion-col>
       <ion-col>
-        <ion-button (click)="decimal()">.</ion-button>
+        <ion-button>.</ion-button>
       </ion-col>
       <ion-col>
         <ion-button color="success" (click)="equel()">=</ion-button>
